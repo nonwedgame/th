@@ -134,3 +134,13 @@ def is_magnet(url: str):
     if magnet:
         return True
     return False
+
+def new_thread(fn):
+    """To use as decorator to make a function call threaded.
+    Needs import
+    from threading import Thread"""
+    def wrapper(*args, **kwargs):
+        thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
+        thread.start()
+        return thread
+    return wrapper
